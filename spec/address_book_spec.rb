@@ -80,4 +80,33 @@ end
      end
 
    end
+
+  context ".import_from_csv" do
+    it "imports the correct number of entries from a second csv" do
+
+      book.import_from_csv("entries_2.csv")
+      book_size = book.entries.size
+
+      expect(book_size).to eql 3
+    end
+
+    it "imports the 1st entry of csv2" do
+      book.import_from_csv("entries_2.csv")
+      entry_one = book.entries[0]
+      check_entry(entry_one, "Bill2", "555-555-4855", "bill2@blocmail.com")
+    end
+
+     it "imports the 2nd entry of csv2" do
+       book.import_from_csv("entries_2.csv")
+       entry_two = book.entries[1]
+       check_entry(entry_two, "Bob2", "555-555-5416", "bob2@blocmail.com")
+     end
+ 
+     it "imports the 3rd entry of csv2" do
+       book.import_from_csv("entries_2.csv")
+       entry_three = book.entries[2]
+       check_entry(entry_three, "Joe2", "555-555-3661", "joe2@blocmail.com")
+     end
+   end
+
  end
