@@ -15,6 +15,7 @@ class MenuController
     puts "3 - Search for an entry"
     puts "4 - Import entries from a CSV"
     puts "5 - Exit"
+    puts "6 - Press to initiate Blocpocalypse"
     print "Enter your selection: "
 
     selection = gets.to_i
@@ -38,8 +39,13 @@ class MenuController
       main_menu
     when 5
       puts "Good-bye!"
+    when 6
+      system "clear"
+      blocpocalypse_now
+      main_menu
+    # when
 
-      exit(0)
+    #   exit(0)
 
     else
       system "clear"
@@ -170,6 +176,17 @@ end
 def delete_entry(entry)
   @address_book.entries.delete(entry)
   puts "#{entry.name} has been deleted"
+end
+
+def blocpocalypse_now
+  puts "The judgement is final. Do you wish to proceed? (y/n)"
+  selection = gets.chomp
+    if selection == 'y'
+    @address_book.entries = []
+    puts "Your power is infinite, yet terrible. I feel a little bit sad. And hungry."
+    else
+      main_menu
+   end
 end
 
 def edit_entry(entry)
